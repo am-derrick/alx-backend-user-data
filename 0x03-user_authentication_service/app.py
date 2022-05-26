@@ -51,6 +51,17 @@ def login() -> str:
     Return:
       - JSON payload
     """
+    email = request.form.get("email")
+    password = request.form.get("password")
+    valid_user = AUTH.valid_login(email, password)
+
+    if not valid_user:
+        abort(401)
+    session_id = AUTH.create_seesion(email)
+    message = {"email": email, "message": "logged in"}
+    response = jsonify(message)
+    response.set_cookie("session_id", session_id)
+    return response
 
 
 if __name__ == "__main__":
