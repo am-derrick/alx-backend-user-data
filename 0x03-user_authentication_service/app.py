@@ -44,5 +44,14 @@ def new_user() -> str:
         }), 400
 
 
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> str:
+    """ POST /sessions
+    Creates new user session, stores cookie, email and password
+    Return:
+      - JSON payload
+    """
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
