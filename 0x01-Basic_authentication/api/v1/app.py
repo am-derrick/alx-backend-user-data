@@ -15,7 +15,6 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 auth = None
 
-
 if getenv("AUTH_TYPE") == 'basic_auth':
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
@@ -56,7 +55,7 @@ def unauthorized(error) -> str:
     return jsonify({"error": "Unauthorized"}), 401
 
 
-@app.errohandler(403)
+@app.errorhandler(403)
 def forbidden(error) -> str:
     """ Forbidden handler
     """
